@@ -294,12 +294,14 @@ public class NumberTools {
 		return buffer.toString();
 	}
 	
-	/* Overloaded method which allows the programmer to pass an int as the value to be 
+	/**
+	 * Overloaded method which allows the programmer to pass an int as the value to be 
 	 * padded directly. Works exactly as padOnLeft(int length, String str) works.
-	 * @param: length is the length of the largest value to be padded
-	 *         value is the int to be padded.
-	 * @return: the padded String determined from the length - length of the int
+	 * @param length is the length of the largest value to be padded.
+	 * @param value is the int to be padded.
+	 * @return the padded String determined from the length - length of the int
 	 */
+
 	public static String padOnLeft(int length, int value) {
 		return padOnLeft(length, Integer.toString(value));
 	}
@@ -308,7 +310,7 @@ public class NumberTools {
 		if (minValue > value || maxValue < value) {
 			throw new IllegalArgumentException(value + " is not within range. (" + minValue + " - " + maxValue + ")");
 		}
-		return 1 + (value - minValue) * (9) / (maxValue - minValue);
+		return 1 + ((value - minValue) * (9) / (maxValue - minValue));
 	}
 	
 //	public static double normalizeToRange(double value, double maxValue, double beginRange, double endRange) {
@@ -320,10 +322,22 @@ public class NumberTools {
 		return factorial + factorial(factorial -1);
 	}
 	
-	public static void assertWithinRange1_10(double x) {
+	/**
+	 * Works in a similar fashion to the 'assert' java keyword.
+	 * <p>
+	 * Intended to ensure that any number passed as <code>x</code> will be within the specified
+	 * range. <strong>Note that the range is inclusive of both 1 & 10</strong>
+	 * @param x the number to test
+	 * @throws IllegalArgumentException If number is not in the range [1,10]
+	 */
+	public static void assertWithinRange1_10(double x) throws IllegalArgumentException {
 		if (x < 1 || x > 10) {
 			throw new IllegalArgumentException(format(x) + " is out of range [1,10]");
 		}
+	}
+	
+	public static boolean testWithinRange(int toTest, int min, int max) {
+		return min <= toTest && toTest <= max;
 	}
 	
 	public static void main(String[] args) {System.out.println(factorial(5));}
