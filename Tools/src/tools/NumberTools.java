@@ -102,12 +102,18 @@ public class NumberTools {
 		return doubleFormat;
 	}
 	
-	/* Overloaded method which allows the programmer to define the precision on
-	 * which to truncate the double.
-	 * @param: Precision is the defined as number of digits after which to truncate
-	 * @return: DecimalFormat object adhering to the above considerations.
+	/**
+	 * Overloaded method which allows the programmer to define the precision on
+	 * which to truncate the double. Valid range: 0 - 25
+	 * @param Precision is the defined as number of digits after which to truncate
+	 * @return DecimalFormat object adhering to the above considerations.
+	 * @throws IllegalArgumentException if the precision passed in is outside of the accepted range.
 	 */
-	public static DecimalFormat doubleFormater(int precision) {
+	public static DecimalFormat doubleFormater(int precision) throws IllegalArgumentException {
+		if (0 > precision || precision > 25) {
+			throw new IllegalArgumentException("Invalid percision: " + precision + " Valid range: 0 - 25");
+		}
+		
 		buffer = new StringBuffer("#,##0.");
 		for (int i = 0; i < precision; i++) {
 			buffer.append("0");
@@ -340,5 +346,81 @@ public class NumberTools {
 		return min <= toTest && toTest <= max;
 	}
 	
-	public static void main(String[] args) {System.out.println(factorial(5));}
+	/**
+	 * Method to round a <code>double</code> to the primitive <code>int</code>. Similar to 
+	 * {@link Math#round(double)}. The only difference is that this method returns an 
+	 * <code>int</code> instead of a long.
+	 * <p>
+	 * Method rounds according to the classic "round if above 5" standard. Method chooses 
+	 * whether or not to round based on the value directly after the separator.
+	 * <p>
+	 * <strong> WARNING: </strong> Method has not been tested when separator is ','
+	 * <p>
+	 * <strong> Special Cases: </strong> <br> 
+	 * * NaN returns 0. <br>
+	 * * 0 returns 0. <br>
+	 * * Values past {@link Integer#MAX_VALUE} throw an ArithmeticException due to overflow.
+	 * 
+	 * @param x the <code>double</double> to round.
+	 * @return a rounded <code>int</code> following the classic western standard.
+	 * @throws ArithmeticException if the value passed into this method is beyond the scope
+	 *                             of an <code>int</code> value (past <code>Integer.MAX_VALUE</code>).
+	 */
+//	public static int roundDoubleInt(double x) throws ArithmeticException {
+//		System.out.println("PASSED: " + x);
+//		if (x == 0 || x == Double.NaN) return 0;
+//		else if (x == (int) x) {
+////			System.out.println("\tNo decimal value");
+//			return (int) x;
+//		} else if (((double) Integer.MIN_VALUE) <= x && x <= 2147483647) {
+//			double workingValue = x;
+//			int intValue = (int) x;
+//			workingValue -= intValue;
+//			workingValue *= 10;
+//			
+//			int directlyAfterSeperator = (int) workingValue;
+//			if (directlyAfterSeperator == 0) {
+//				return (int) x;
+//			}
+//			
+//			if (directlyAfterSeperator >= 5) {
+//				return ++intValue;
+//			}
+//			
+//			// else
+//			return intValue;
+//		} else {
+//			throw new ArithmeticException("OVERFLOW WARNING: " + format(x) 
+//					+ " is past the boundary of an integer");
+//		}
+//	}
+	
+	@SuppressWarnings("unused")
+	private static void testRounding() {
+		System.out.println(" 5.1: " + roundDoubleInt(5.1));
+		System.out.println(" 5.52: " + roundDoubleInt(5.52));
+		System.out.println(" 0: " + roundDoubleInt(0));
+//		System.out.println(" NaN: " + roundDoubleInt(Double.NaN));
+		System.out.println(" 1.5: " + roundDoubleInt(1.5));
+		System.out.println(" 1.7: " + roundDoubleInt(1.7));
+		System.out.println(" 1.1: " + roundDoubleInt(1.1));
+		System.out.println(" 1.02: " + roundDoubleInt(1.02));
+		System.out.println(" .10: " + roundDoubleInt(.1));
+		System.out.println(" .8: " + roundDoubleInt(.8));
+		System.out.println(" 10: " + roundDoubleInt(10));
+		System.out.println(" -10: " + roundDoubleInt(-10));
+		System.out.println(" -1.1: " + roundDoubleInt(-1.1));
+		System.out.println(" -1.8: " + roundDoubleInt(-1.9));
+		System.out.println(" 100.1823: " + roundDoubleInt(100.1823));
+		System.out.println(" 100.823: " + roundDoubleInt(100.823));
+		System.out.println(" MaxValue: " + roundDoubleInt(Integer.MAX_VALUE));
+		System.out.println(" MaxValue + 1: " + roundDoubleInt(Integer.MAX_VALUE + 1)); 
+		System.out.println(" MaxValue + 2: " + roundDoubleInt(Integer.MAX_VALUE + 2));
+		System.out.println(" MinValue - 1: " + roundDoubleInt(Integer.MIN_VALUE - 1));
+	}
+	
+	public static void main(String[] args) {
+		testRounding();
+//		System.out.println(Integer.MAX_VALUE);
+	}
 }

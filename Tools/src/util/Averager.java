@@ -11,6 +11,10 @@ public class Averager implements Serializable {
 		count = sum = 0;
 	}
 	
+	public Averager(double startingAverage) {
+		count = sum = 1;
+	}
+	
 	public void update(double addToSum) {
 		count++;
 		sum += addToSum;
