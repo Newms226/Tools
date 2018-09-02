@@ -394,33 +394,33 @@ public class NumberTools {
 //					+ " is past the boundary of an integer");
 //		}
 //	}
-	
-	@SuppressWarnings("unused")
-	private static void testRounding() {
-		System.out.println(" 5.1: " + roundDoubleInt(5.1));
-		System.out.println(" 5.52: " + roundDoubleInt(5.52));
-		System.out.println(" 0: " + roundDoubleInt(0));
-//		System.out.println(" NaN: " + roundDoubleInt(Double.NaN));
-		System.out.println(" 1.5: " + roundDoubleInt(1.5));
-		System.out.println(" 1.7: " + roundDoubleInt(1.7));
-		System.out.println(" 1.1: " + roundDoubleInt(1.1));
-		System.out.println(" 1.02: " + roundDoubleInt(1.02));
-		System.out.println(" .10: " + roundDoubleInt(.1));
-		System.out.println(" .8: " + roundDoubleInt(.8));
-		System.out.println(" 10: " + roundDoubleInt(10));
-		System.out.println(" -10: " + roundDoubleInt(-10));
-		System.out.println(" -1.1: " + roundDoubleInt(-1.1));
-		System.out.println(" -1.8: " + roundDoubleInt(-1.9));
-		System.out.println(" 100.1823: " + roundDoubleInt(100.1823));
-		System.out.println(" 100.823: " + roundDoubleInt(100.823));
-		System.out.println(" MaxValue: " + roundDoubleInt(Integer.MAX_VALUE));
-		System.out.println(" MaxValue + 1: " + roundDoubleInt(Integer.MAX_VALUE + 1)); 
-		System.out.println(" MaxValue + 2: " + roundDoubleInt(Integer.MAX_VALUE + 2));
-		System.out.println(" MinValue - 1: " + roundDoubleInt(Integer.MIN_VALUE - 1));
-	}
+//	
+//	@SuppressWarnings("unused")
+//	private static void testRounding() {
+//		System.out.println(" 5.1: " + roundDoubleInt(5.1));
+//		System.out.println(" 5.52: " + roundDoubleInt(5.52));
+//		System.out.println(" 0: " + roundDoubleInt(0));
+////		System.out.println(" NaN: " + roundDoubleInt(Double.NaN));
+//		System.out.println(" 1.5: " + roundDoubleInt(1.5));
+//		System.out.println(" 1.7: " + roundDoubleInt(1.7));
+//		System.out.println(" 1.1: " + roundDoubleInt(1.1));
+//		System.out.println(" 1.02: " + roundDoubleInt(1.02));
+//		System.out.println(" .10: " + roundDoubleInt(.1));
+//		System.out.println(" .8: " + roundDoubleInt(.8));
+//		System.out.println(" 10: " + roundDoubleInt(10));
+//		System.out.println(" -10: " + roundDoubleInt(-10));
+//		System.out.println(" -1.1: " + roundDoubleInt(-1.1));
+//		System.out.println(" -1.8: " + roundDoubleInt(-1.9));
+//		System.out.println(" 100.1823: " + roundDoubleInt(100.1823));
+//		System.out.println(" 100.823: " + roundDoubleInt(100.823));
+//		System.out.println(" MaxValue: " + roundDoubleInt(Integer.MAX_VALUE));
+//		System.out.println(" MaxValue + 1: " + roundDoubleInt(Integer.MAX_VALUE + 1)); 
+//		System.out.println(" MaxValue + 2: " + roundDoubleInt(Integer.MAX_VALUE + 2));
+//		System.out.println(" MinValue - 1: " + roundDoubleInt(Integer.MIN_VALUE - 1));
+//	}
 	
 	public static void main(String[] args) {
-		testRounding();
+//		testRounding();
 //		System.out.println(Integer.MAX_VALUE);
 	}
 }

@@ -26,16 +26,19 @@ public class SerialTools {
 		seralizeObject(toSeralize, new File(directory + "/" + name + ".txt"));
 	}
 	
-	public static void seralizeObject(Serializable toSeralize, File fileToWriteTo) {
+	public static boolean seralizeObject(Serializable toSeralize, File fileToWriteTo) {
 		try (FileOutputStream file = new FileOutputStream(fileToWriteTo);
 			 ObjectOutputStream output = new ObjectOutputStream(file))
 		{
 			output.writeObject(toSeralize);
-			System.out.println("Seralize successful.");
+			return true;
+//			System.out.println("Seralize successful.");
 		} catch (Exception e) {
 			System.out.println("Serialize Failed.\n" + e.getMessage() + "\n");
-			e.printStackTrace();
+//			e.printStackTrace();
+			
 		} 
+		return false;
 	}
 	
 //	public static void seralizeObject(KeyableByInt toSeralize, File directory) {

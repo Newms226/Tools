@@ -2,9 +2,9 @@ package tools;
 
 import java.util.Arrays;
 
-/* ArrayTools
- * Programmer: Michael Newman
- * Date: 3.20.18
+/**
+ * @author Michael Newman
+ * @since 3.20.18
  * 
  * Description: ArrayTools is a group of static methods designed to work on arrays
  * 		* Similar to java.util.Arrays
@@ -267,6 +267,15 @@ public class ArrayTools {
 		}
 		buffer.append("}");
 		return buffer.toString();
+	}
+	
+	public static double[] toDoubleArray(long[] a) {
+		int length = a.length;
+		double[] toReturn = new double[length];
+		for (int i = 0; i < length; i++) {
+			toReturn[i] = a[i];
+		}
+		return toReturn;
 	}
 	
 	

@@ -62,12 +62,7 @@ public class FileTools {
 		return true;
 	}
 	
-	/* createDirectory is essentially a Wrapper method for the File class which attempts
-	 * to create all the necessary parent directories of the abstract directory path 
-	 * passed in as a parameter. (See File.mkdirs())
-	 * @param: location is the abstract pathname to attempt to create
-	 * @return: true if directory creation succeeded, false otherwise
-	 */
+	
 	public static boolean createDirectory(String location) {
 		directory = new File(location);
 		if (directory.exists() && directory.isDirectory()) return true;
@@ -75,6 +70,20 @@ public class FileTools {
 		// else
 		return false;
 	}
+	
+	/* A Wrapper method for the {@link File} class which attempts
+	 * to create all the necessary parent directories of the abstract directory path 
+	 * passed in as a parameter. (See File.mkdirs())
+	 * @param: location is the abstract pathname to attempt to create
+	 * @return: true if directory creation succeeded, false otherwise
+	 */
+	public static File getValidDirectoryFile(File location) throws IOException {
+		if (location.exists() && location.isDirectory()) return location;
+		if (location.mkdirs()) return location;
+		
+		// else
+		throw new IOException("FAILED TO CREATE DIRECTORY AT: " + location);
+	} 
 	
 	/* generateDirectoryString handles all of the necessary overhead to generate an 
 	 * abstract directory file path as a String.
@@ -461,6 +470,31 @@ public class FileTools {
 		return true;
 	}
 	
+	/**
+	 * Ensures that a {@link File} with the Path passed to this method does not already exist. Note
+	 * that this implementation is only designed to work with .txt files.
+	 * 
+	 * @param file a {@link String} containing the path to ensure is unique
+	 * 
+	 * @return a unique {@link File}
+	 */
+	public static File getUniqueTxtFile(String location) {
+		File file = new File(location);
+		if (!(file.exists() && file.isDirectory())) return file;
+		
+		// else
+		String filePath = file.toString().replaceAll(".txt", "");
+		
+		int i = 1;
+		do {
+			file = new File(filePath + "_" + i + ".txt");
+			i++;
+		} while (file.exists());
+		
+		return file;
+	}
+	
 	public static void main(String[] args) {
+		System.out.println(!(false && true));
 	}
 }
