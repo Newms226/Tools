@@ -198,7 +198,7 @@ public class NumberTools {
 				key.nextLine(); //consume incorrect string char
 			}
 		} // end validate
-		if (format) System.out.println("You entered: " + NumberTools.format(x));
+		if (format) System.out.println("You entered: " + NumberTools.format(x) + "\n");
 		return x;
 	}
 	
@@ -344,6 +344,60 @@ public class NumberTools {
 	
 	public static boolean testWithinRange(int toTest, int min, int max) {
 		return min <= toTest && toTest <= max;
+	}
+	
+	public static boolean isSequentialRange(int start, int end, boolean zeroAllowed) {
+		return zeroAllowed ? start <= end
+				           : start < end;
+	}
+	
+	public static IntRange getIntRange(boolean negativeAllowed, boolean zeroAllowed) {
+		boolean valid = false;
+		int startRange, endRange;
+		do {
+			startRange = NumberTools.generateInt("Enter the beginning of the range", 
+					true, 
+					Integer.MIN_VALUE, 
+					Integer.MAX_VALUE);
+			endRange = NumberTools.generateInt("Enter the end of the range", 
+					true, 
+					negativeAllowed ? Integer.MIN_VALUE : zeroAllowed ? startRange: startRange + 1, 
+					Integer.MAX_VALUE);
+			
+			if (!negativeAllowed) {
+				if (isSequentialRange(startRange, endRange, zeroAllowed)) {
+					valid = true;
+				}
+			}
+		} while (!valid);
+		
+		return new IntRange(startRange, endRange);
+	}
+	
+	/**
+	 * Static class which simply represents an int range. Can be negative, can be 0.
+	 * @author Michael
+	 *
+	 */
+	static class IntRange {
+		public final int start, end;
+		
+		IntRange(int start, int end){
+			this.start = start;
+			this.end = end;
+		}
+		
+		public boolean isNegative() {
+			return end < start;
+		}
+		
+		public boolean isZero() {
+			return start == end;
+		}
+		
+		public String toString() {
+			return start + " - " + end;
+		}
 	}
 	
 	/**

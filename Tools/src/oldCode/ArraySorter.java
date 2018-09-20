@@ -1,4 +1,4 @@
-package tools;
+package oldCode;
 /* ArraySorter.Java
  * Programmer: Michael Newman
  * Date: 3.20.18
@@ -17,6 +17,7 @@ package tools;
 import java.util.Arrays;
 
 import edu.princeton.cs.algs4.StdRandom;
+import tools.ArrayTools;
 
 
 public class ArraySorter<T extends Comparable<Object>> extends ArrayTools {

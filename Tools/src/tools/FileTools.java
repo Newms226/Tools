@@ -62,7 +62,10 @@ public class FileTools {
 		return true;
 	}
 	
-	
+	public static void assertValidDirectory(String location) throws IOException {
+		if (!validateDirectory(location))
+			throw new IOException(location + " IS NOT A VALID DIRECTORY");
+	}
 	public static boolean createDirectory(String location) {
 		directory = new File(location);
 		if (directory.exists() && directory.isDirectory()) return true;
@@ -71,11 +74,12 @@ public class FileTools {
 		return false;
 	}
 	
-	/* A Wrapper method for the {@link File} class which attempts
+	/**
+	 *  A Wrapper method for the {@link File} class which attempts
 	 * to create all the necessary parent directories of the abstract directory path 
 	 * passed in as a parameter. (See File.mkdirs())
-	 * @param: location is the abstract pathname to attempt to create
-	 * @return: true if directory creation succeeded, false otherwise
+	 * @param location is the abstract pathname to attempt to create
+	 * @return true if directory creation succeeded, false otherwise // TODO: Wrong!
 	 */
 	public static File getValidDirectoryFile(File location) throws IOException {
 		if (location.exists() && location.isDirectory()) return location;

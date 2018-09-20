@@ -41,6 +41,13 @@ public class CollectionTools {
 		return buffer.toString();
 	}
 	
+	
+	public static <T> StringBuilder toCVS(Collection<T> collection, StringBuilder buf) {
+		buf.append("{");
+		
+		return buf;
+	}
+	
 	public static <T> Collection<T> findAllInParallel(
 			Collection<T> source,
 			Predicate<T> tester)
